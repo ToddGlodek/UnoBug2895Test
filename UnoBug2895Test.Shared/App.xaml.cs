@@ -128,16 +128,19 @@ namespace UnoBug2895Test
             {
 #if __WASM__
                 builder.AddProvider(new global::Uno.Extensions.Logging.WebAssembly.WebAssemblyConsoleLoggerProvider());
+                builder.AddDebug();
 #elif __IOS__
                 builder.AddProvider(new global::Uno.Extensions.Logging.OSLogLoggerProvider());
 #elif NETFX_CORE
                 builder.AddDebug();
+                builder.AddDebug();
 #else
                 builder.AddConsole();
+                builder.AddDebug();
 #endif
 
                 // Exclude logs below this level
-                builder.SetMinimumLevel(LogLevel.Information);
+                builder.SetMinimumLevel(LogLevel.Debug);
 
                 // Default filters for Uno Platform namespaces
                 builder.AddFilter("Uno", LogLevel.Warning);

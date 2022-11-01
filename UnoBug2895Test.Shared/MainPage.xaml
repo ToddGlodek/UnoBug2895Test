@@ -8,7 +8,64 @@
     mc:Ignorable="d"    
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-      <TextBlock Text="Hello, world!" Margin="20" FontSize="30" />
-    </Grid>
+    <NavigationView  x:Name="NavView" PaneDisplayMode="Left"  ItemInvoked="NavView_ItemInvoked" AlwaysShowHeader="True"   Header="Hello, world!">
+
+        <NavigationView.HeaderTemplate>
+
+            <DataTemplate>
+                <Grid Margin="24,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="appTitle" Style="{StaticResource TitleTextBlockStyle}"
+                       Margin="20" 
+                       FontSize="30"
+                       VerticalAlignment="Center"
+                       Text= "{Binding}" />
+                    <!--<CommandBar Grid.Column="1"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        DefaultLabelPosition="Right"
+                        Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+                        <AppBarButton Label="Refresh" Icon="Refresh"/>
+                        <AppBarButton Label="Import" Icon="Import"/>
+                    </CommandBar>-->
+                </Grid>
+            </DataTemplate>
+
+        </NavigationView.HeaderTemplate>
+
+
+        <NavigationView.MenuItems>
+
+            <NavigationViewItemHeader Content="These Work"/>
+
+            <NavigationViewItem Content="Three Items" x:Name="I3"/>
+            <NavigationViewItem Content="Four Items" x:Name="I4" />
+            <NavigationViewItem Content="Five Items" x:Name="I5" />
+            <NavigationViewItem Content="Six Items" x:Name="I6" />
+
+            <NavigationViewItemSeparator/>
+
+            <NavigationViewItemHeader Content="Don't Work"/>
+
+            <NavigationViewItem Content="Three Items" x:Name="F3" />
+            <NavigationViewItem Content="Four Items" x:Name="F4" />
+            <NavigationViewItem Content="Five Items" x:Name="F5" />
+            <NavigationViewItem Content="Six Items" x:Name="F6" />
+
+
+        </NavigationView.MenuItems>
+
+        <Frame x:Name="NavContent">
+
+            <!--<Grid>
+                <TextBlock Text="Hello, world!" Margin="20" FontSize="30" />
+            </Grid>-->
+
+        </Frame>
+
+    </NavigationView>
+
 </Page>
