@@ -41,7 +41,7 @@ namespace UnoBug2895Test
                 try
                 {
                     NavView.Header = args.InvokedItem.ToString();
-/****                    NavContent.Navigate(typeof(SideBySideGridPage), points);     ****/
+                    NavContent.Navigate(typeof(SideBySideGridPage), points);
                 }
                 catch (Exception ex)
                 {

@@ -1,0 +1,42 @@
+﻿<Page
+    x:Class="UnoBug2895Test.Views.SideBySideGridPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:locals="using:UnoBug2895Test.Views"
+    xmlns:localvu="using:UnoBug2895Test.ViewModels"    
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+
+    <Page.DataContext>
+        <localvu:ItemsDisplayPageVieModel x:Name="vuMod" />
+    </Page.DataContext>
+
+    <Grid>
+
+        <Grid.RowDefinitions >
+            <!--<RowDefinition Height="100" />-->
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions >
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+
+
+        <locals:SideBySideGrid Grid.Row="0" Grid.Column="0" >
+
+            <!--<TextBlock Text="Boo" Margin="20" FontSize="30"  Grid.Row="0" Grid.Column="0"/>-->
+
+            <!--<locals:LeftCanvas Background="Aqua" />-->
+
+        </locals:SideBySideGrid>
+        
+        <!--<locals:RightCanvas Background="HotPink" Grid.Row="1" Grid.Column="1" />-->
+
+    </Grid>
+    
+</Page>
