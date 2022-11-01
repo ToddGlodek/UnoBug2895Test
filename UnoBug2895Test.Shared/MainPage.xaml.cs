@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using Uno.Extensions;
 using Windows.UI.ApplicationSettings;
+using System.Data;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -36,12 +37,14 @@ namespace UnoBug2895Test
             {
                 int itemsCount = int.Parse(args.InvokedItemContainer.Name.Substring(1));
 
+                Type pageType = DetermineNavigationTargetFromMenuItem(args.InvokedItemContainer);
+
                 var points = BuildTheListOfPoints(itemsCount);
 
                 try
                 {
                     NavView.Header = args.InvokedItem.ToString();
-                    NavContent.Navigate(typeof(SideBySideGridPage), points);
+                    NavContent.Navigate(pageType, points);
                 }
                 catch (Exception ex)
                 {
@@ -50,7 +53,20 @@ namespace UnoBug2895Test
             }
 
         }
+        private static Type DetermineNavigationTargetFromMenuItem(NavigationViewItemBase invokedItemContainer) {
 
+            string menuOption = invokedItemContainer.Name.Substring(0, 1);
+
+            switch (menuOption) {
+                case "I":
+                    return typeof(SideBySideGridPage);
+                case "T":
+                    return typeof(SideBySide_ControlPage);
+                default:
+                    throw new ArgumentOutOfRangeException( $"Unknown Menu Option {menuOption}" );
+            }
+
+        }
         private static List<Tuple<double, double>> BuildTheListOfPoints(int itemsCount)
         {
             List<Tuple<double, double>> points = new();

@@ -26,9 +26,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelAbstract.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelLeftCanvas.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelRightCanvas.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SideBySide_ControlPage.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\SideBySide_ControlPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
