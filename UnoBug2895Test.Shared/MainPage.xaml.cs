@@ -4,6 +4,9 @@ using System;
 using Uno.Extensions;
 using Windows.UI.ApplicationSettings;
 using System.Data;
+using System.IO;
+using System.Reflection;
+using System.Linq;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -14,14 +17,30 @@ namespace UnoBug2895Test
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        const string README_FILE = "README_WinUI_vs_WASM.txt";
+
         public MainPage()
         {
             this.InitializeComponent();
 
+            this.Loaded += On_Loaded;
+
             this.NavView.DataContext = "Hello, world!";
 
-            /** Clear the Debug.Output window if BREAK happens here **/
-            //  LeftCanvas leftCanvas = new LeftCanvas();
+        }
+
+        private async void On_Loaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+        {
+            var assembly = Assembly.GetEntryAssembly();
+
+            string resourcePath = assembly.GetManifestResourceNames().Single(str => str.EndsWith(README_FILE));
+
+            using var resourceStream = assembly.GetManifestResourceStream(resourcePath);
+
+            using (var reader = new StreamReader(resourceStream, Encoding.UTF8))
+            {
+                this.ReadMeText.Text = await reader.ReadToEndAsync();
+            }
 
         }
 

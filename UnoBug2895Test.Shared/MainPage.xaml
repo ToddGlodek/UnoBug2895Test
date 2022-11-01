@@ -39,7 +39,7 @@
 
         <NavigationView.MenuItems>
 
-            <NavigationViewItemHeader Content="Using Grid On Page (Works)"/>
+            <NavigationViewItemHeader Content="Using Grid On Page (Works Both)"/>
 
             <NavigationViewItem Content="Three Items" x:Name="I3"/>
             <NavigationViewItem Content="Four Items" x:Name="I4" />
@@ -48,7 +48,7 @@
 
             <NavigationViewItemSeparator/>
 
-            <NavigationViewItemHeader Content="Using Custom Control (Works)"/>
+            <NavigationViewItemHeader Content="Using Custom Control (Works WinUI/Fails WASM)"/>
 
             <NavigationViewItem Content="Three Items" x:Name="T3" />
             <NavigationViewItem Content="Four Items" x:Name="T4" />
@@ -60,9 +60,11 @@
 
         <Frame x:Name="NavContent">
 
-            <!--<Grid>
-                <TextBlock Text="Hello, world!" Margin="20" FontSize="30" />
-            </Grid>-->
+
+            <ScrollViewer  HorizontalScrollMode="Disabled" VerticalScrollMode="Enabled"  HorizontalAlignment="Stretch" Margin="24,10,24,5"  >
+                <TextBlock  x:Name="ReadMeText" Text="" Margin="20" FontSize="30" TextWrapping="WrapWholeWords" />
+            </ScrollViewer>
+            
 
         </Frame>
 
