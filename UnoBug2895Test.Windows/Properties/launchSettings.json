@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "UnoBug2895Test.Windows": {
+      "commandName": "MsixPackage"
+    }
+  }
+}
