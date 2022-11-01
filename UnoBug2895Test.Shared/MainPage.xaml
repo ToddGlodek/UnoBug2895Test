@@ -48,7 +48,7 @@
 
             <NavigationViewItemSeparator/>
 
-            <NavigationViewItemHeader Content="Using Templated Control (Don't Work)"/>
+            <NavigationViewItemHeader Content="Using Custom Control (Works)"/>
 
             <NavigationViewItem Content="Three Items" x:Name="T3" />
             <NavigationViewItem Content="Four Items" x:Name="T4" />

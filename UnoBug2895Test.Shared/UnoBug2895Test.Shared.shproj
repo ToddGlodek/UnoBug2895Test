@@ -14,6 +14,7 @@
     <UpToDateCheckInput Remove="Views\SideBySide_ControlPage.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <_Globbed_Compile Remove="SideBySide_Custom.cs" />
     <_Globbed_Compile Remove="Views\SideBySide_ControlPage.xaml.cs" />
   </ItemGroup>
   <ItemGroup>

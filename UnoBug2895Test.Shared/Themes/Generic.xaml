@@ -13,7 +13,6 @@
                     <Grid>
 
                         <Grid.RowDefinitions >
-                            <RowDefinition Height="100" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions >
 
@@ -21,10 +20,9 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-
-                        <TextBlock  x:Name="txtBoo" Text="Boo" Margin="20" FontSize="30"  Grid.Row="0" Grid.Column="0"/>
-                        <locals:LeftCanvas Background="Aqua" Grid.Row="1" Grid.Column="0"/>
-                        <locals:RightCanvas Background="HotPink" Grid.Row="1" Grid.Column="1" />
+                        
+                        <locals:LeftCanvas Background="Aqua" Grid.Row="0" Grid.Column="0"/>
+                        <locals:RightCanvas Background="HotPink" Grid.Row="0" Grid.Column="1" />
 
                     </Grid>
                 </ControlTemplate>
