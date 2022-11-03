@@ -1,17 +1,14 @@
 ﻿namespace UnoBug2895Test.ViewModels;
 
-internal partial class ItemsDisplayPageVieModel : ObservableObject
+internal partial class ShapesDisplayPageVieModel : ObservableObject
 {
 
-    public ItemsDisplayPageVieModel()
+    public ShapesDisplayPageVieModel()
     {
         this.Log().MethodInvoked();
     }
 
     [ObservableProperty]
-    List<Tuple<double, double>> _pointList;
-
-    //[ObservableProperty]
-    //string _itemName;
+    List<Tuple<Shape, double>> _shapesList;
 
 }

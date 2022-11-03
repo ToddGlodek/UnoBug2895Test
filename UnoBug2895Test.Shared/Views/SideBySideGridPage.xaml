@@ -11,7 +11,7 @@
 
 
     <Page.DataContext>
-        <localvu:ItemsDisplayPageVieModel x:Name="vuMod" />
+        <localvu:ShapesDisplayPageVieModel  x:Name="vuMod" />
     </Page.DataContext>
 
     <Grid>
@@ -25,35 +25,9 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
     
-        <locals:LeftCanvas Background="Aqua" Grid.Row="1" Grid.Column="0"/>
-        <locals:RightCanvas Background="HotPink" Grid.Row="1" Grid.Column="1" />
+        <locals:LeftCanvas  x:Name="LeftCanvas" Background="Aqua" Grid.Row="1" Grid.Column="0"/>
+        <locals:RightCanvas x:Name="RightCanvas" Background="HotPink" Grid.Row="1" Grid.Column="1" />
 
     </Grid>
 
-
-    <!--<Grid>
-
-        <Grid.RowDefinitions >
-            --><!--<RowDefinition Height="100" />--><!--
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions >
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-
-
-
-        <locals:SideBySideGrid Grid.Row="0" Grid.Column="0" >
-
-            --><!--<TextBlock Text="Boo" Margin="20" FontSize="30"  Grid.Row="0" Grid.Column="0"/>-->
-
-            <!--<locals:LeftCanvas Background="Aqua" />--><!--
-
-        </locals:SideBySideGrid>
-        
-        --><!--<locals:RightCanvas Background="HotPink" Grid.Row="1" Grid.Column="1" />--><!--
-
-    </Grid>-->
-    
 </Page>

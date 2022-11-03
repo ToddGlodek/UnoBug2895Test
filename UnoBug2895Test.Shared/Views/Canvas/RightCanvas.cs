@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.UI.Xaml;
+
 namespace UnoBug2895Test.Views;
 
 internal class RightCanvas : CanvasAbstract<ViewModelRightCanvas>
@@ -9,6 +11,7 @@ internal class RightCanvas : CanvasAbstract<ViewModelRightCanvas>
         DataContext = new ViewModelRightCanvas();
     }
 
-
-
+    protected override void OnPointerPressed(PointerRoutedEventArgs e, IEnumerable<UIElement> elements)
+    {
+    }
 }

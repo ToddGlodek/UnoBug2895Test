@@ -17,7 +17,7 @@ namespace UnoBug2895Test.Views
             this.DataContextChanged += OnDataContextChanged;
             this.Loaded += OnLoaded;
 
-            ItemsDisplayPageVieModel vm = vuMod;
+            ShapesDisplayPageVieModel vm = vuMod;
             vm.PropertyChanged += OnPropertyChanged;
         }
 
@@ -37,16 +37,16 @@ namespace UnoBug2895Test.Views
 
             base.OnNavigatedTo(e);
 
-            ItemsDisplayPageVieModel vm = this.vuMod;
+            ShapesDisplayPageVieModel vm = this.vuMod;
 
-            vm.PointList = (List<Tuple<double, double>>)e.Parameter;
+            //vm.ShapesList = (List<Tuple<Shape, double>>)e.Parameter;
 
         }
 
 
         private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            this.Log().LogCritical($"{e.PropertyName} Changed");
+            this.Log().PropertyChanged(e);
         }
 
 

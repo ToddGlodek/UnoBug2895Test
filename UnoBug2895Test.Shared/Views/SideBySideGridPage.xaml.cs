@@ -6,8 +6,8 @@ namespace UnoBug2895Test.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class SideBySideGridPage : Microsoft.UI.Xaml.Controls.Page
+    /// </summary> 
+    public sealed partial class SideBySideGridPage : Page
     {
         public SideBySideGridPage()
         {
@@ -15,11 +15,18 @@ namespace UnoBug2895Test.Views
 
             this.InitializeComponent();
 
+            ShapesDisplayPageVieModel vm = vuMod;
+            vm.PropertyChanged += OnPropertyChanged;
+
+            /*******************************************************************************
+             * on WInUI - this fires after the constructor has completed even though the   *
+             * the DataContext change happens BEFORE the event handler has been registered *
+             *******************************************************************************/
             this.DataContextChanged += OnDataContextChanged;
+
             this.Loaded += OnLoaded;
 
-            ItemsDisplayPageVieModel vm = vuMod;
-            vm.PropertyChanged += OnPropertyChanged;
+
         }
 
         private void OnDataContextChanged(Microsoft.UI.Xaml.FrameworkElement sender, Microsoft.UI.Xaml.DataContextChangedEventArgs args)
@@ -30,6 +37,9 @@ namespace UnoBug2895Test.Views
         private void OnLoaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
         {
             this.Log().MethodInvoked();
+
+            (LeftCanvas.DataContext as ViewModelLeftCanvas).Shapes = vuMod.ShapesList;
+
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -38,16 +48,25 @@ namespace UnoBug2895Test.Views
 
             base.OnNavigatedTo(e);
 
-            ItemsDisplayPageVieModel vm = this.vuMod;
+            ShapesDisplayPageVieModel vm = vuMod;
 
-            vm.PointList = (List<Tuple<double, double>>)e.Parameter;
+            vm.ShapesList = (List<Tuple<Shape, double>>)e.Parameter;
 
         }
 
 
         private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            this.Log().LogCritical($"{e.PropertyName} Changed");
+            this.Log().PropertyChanged(e);
+
+            if (LeftCanvas.IsLoaded)
+            {
+                if (e.PropertyName == nameof(ShapesDisplayPageVieModel.ShapesList))
+                {
+                    (LeftCanvas.DataContext as ViewModelLeftCanvas).Shapes = vuMod.ShapesList;
+                }
+            }
+
         }
 
 

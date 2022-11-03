@@ -39,21 +39,15 @@
 
         <NavigationView.MenuItems>
 
-            <NavigationViewItemHeader Content="Using Grid On Page (Works Both)"/>
+            <NavigationViewItemHeader Content="Using Grid On Page (Works WinUI/Fails WASM)"/>
 
-            <NavigationViewItem Content="Three Items" x:Name="I3"/>
-            <NavigationViewItem Content="Four Items" x:Name="I4" />
-            <NavigationViewItem Content="Five Items" x:Name="I5" />
-            <NavigationViewItem Content="Six Items" x:Name="I6" />
+            <NavigationViewItem Content="Draw Three Shapes" x:Name="I3"/>
 
             <NavigationViewItemSeparator/>
 
             <NavigationViewItemHeader Content="Using Custom Control (Works WinUI/Fails WASM)"/>
 
-            <NavigationViewItem Content="Three Items" x:Name="T3" />
-            <NavigationViewItem Content="Four Items" x:Name="T4" />
-            <NavigationViewItem Content="Five Items" x:Name="T5" />
-            <NavigationViewItem Content="Six Items" x:Name="T6" />
+            <NavigationViewItem Content="Draw Three Shapes" x:Name="T3" />
 
 
         </NavigationView.MenuItems>

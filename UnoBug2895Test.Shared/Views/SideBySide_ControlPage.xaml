@@ -11,7 +11,7 @@
 
 
     <Page.DataContext>
-        <localvu:ItemsDisplayPageVieModel x:Name="vuMod" />
+        <localvu:ShapesDisplayPageVieModel  x:Name="vuMod" />
     </Page.DataContext>
 
 

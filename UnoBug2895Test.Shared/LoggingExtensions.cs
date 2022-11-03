@@ -11,7 +11,8 @@ public static class LoggingExtensions
      *                incredibly useful                                             *
      ********************************************************************************/
 
-    public static void MethodInvoked(this ILogger l, [CallerMemberName] string propertyName = "")
+    [System.Diagnostics.DebuggerStepThrough]
+    public static void MethodInvoked(this ILogger l, [CallerMemberName] string methodName = "")
     {
 
 #if DEBUG  
@@ -23,9 +24,31 @@ public static class LoggingExtensions
              * I am using *Critical* for UnoBug2895Test just so that no logging events disapper in the  *
              * shift between WinUI and WASM                                                             *
              ********************************************************************************************/
-            l.LogCritical(propertyName);
+            l.LogCritical(methodName);
         }
 #endif
     }
 
+    [System.Diagnostics.DebuggerStepThrough]
+    public static void PropertyChanged(this ILogger l, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+
+#if DEBUG  
+        /** Only log the PropertyChanged when in DEBUG **/
+
+
+        if (l.IsEnabled(LogLevel.Critical))
+        {
+            /********************************************************************************************
+             * I am using *Critical* for UnoBug2895Test just so that no logging events disapper in the  *
+             * shift between WinUI and WASM                                                             *
+             ********************************************************************************************/
+            l.LogCritical(  $"Changed: {e.PropertyName}" );
+        }
+#endif
+    }
+
+
+
+    
 }
