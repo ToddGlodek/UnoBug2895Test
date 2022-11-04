@@ -15,6 +15,8 @@
   </ItemGroup>
   <ItemGroup>
     <_Globbed_Compile Remove="SideBySide_Custom.cs" />
+    <_Globbed_Compile Remove="Views\Panels\LeftPanel.cs" />
+    <_Globbed_Compile Remove="Views\Panels\PanelAbstract.cs" />
     <_Globbed_Compile Remove="Views\SideBySide_ControlPage.xaml.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -38,7 +38,7 @@ namespace UnoBug2895Test.Views
         {
             this.Log().MethodInvoked();
 
-            (LeftCanvas.DataContext as ViewModelLeftCanvas).Shapes = vuMod.ShapesList;
+            (LeftPanel.DataContext as ViewModelLeftCanvas).Shapes = vuMod.ShapesList;
 
         }
 
@@ -59,11 +59,11 @@ namespace UnoBug2895Test.Views
         {
             this.Log().PropertyChanged(e);
 
-            if (LeftCanvas.IsLoaded)
+            if (LeftPanel.IsLoaded)
             {
                 if (e.PropertyName == nameof(ShapesDisplayPageVieModel.ShapesList))
                 {
-                    (LeftCanvas.DataContext as ViewModelLeftCanvas).Shapes = vuMod.ShapesList;
+                    (LeftPanel.DataContext as ViewModelLeftCanvas).Shapes = vuMod.ShapesList;
                 }
             }
 

@@ -24,8 +24,8 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-    
-        <locals:LeftCanvas  x:Name="LeftCanvas" Background="Aqua" Grid.Row="1" Grid.Column="0"/>
+
+        <locals:LeftPanel  x:Name="LeftPanel" Background="Aqua" Grid.Row="1" Grid.Column="0"/>
         <locals:RightCanvas x:Name="RightCanvas" Background="HotPink" Grid.Row="1" Grid.Column="1" />
 
     </Grid>

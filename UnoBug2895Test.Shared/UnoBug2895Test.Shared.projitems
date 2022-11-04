@@ -26,6 +26,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelAbstract.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelLeftCanvas.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelRightCanvas.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Panels\LeftPanel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Panels\PanelAbstract.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\SideBySide_ControlPage.xaml.cs" />
   </ItemGroup>
   <ItemGroup>

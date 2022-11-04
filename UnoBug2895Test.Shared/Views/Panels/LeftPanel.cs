@@ -1,15 +1,17 @@
-﻿using Microsoft.UI.Xaml;
+﻿
+using Microsoft.UI.Xaml;
 using Windows.Foundation;
 
 namespace UnoBug2895Test.Views;
 
-internal class LeftCanvas  : CanvasAbstract<ViewModelLeftCanvas>
+internal class LeftPanel : PanelAbstract<ViewModelLeftCanvas>
 {
     private const double SIZE_REDUCTION_PRCNT = 0.10;
     private const double SIZE_ROTATION_FUDGE_FACTOR = 30.0;
 
 
-    public LeftCanvas() {
+    public LeftPanel()
+    {
 
         SizeChanged += OnSizeChanged;
         Loaded += OnLoaded;
@@ -21,21 +23,16 @@ internal class LeftCanvas  : CanvasAbstract<ViewModelLeftCanvas>
     {
         /** Perform this check because a user MIGHT use XAML to set the ViewModel to something inappropropriat  **/
 
-        if (args.NewValue is ViewModelLeftCanvas nuVuMod) {
+        if (args.NewValue is ViewModelLeftCanvas nuVuMod)
+        {
             nuVuMod.PropertyChanged += OnPropertyChanged;
         }
     }
 
-    protected override Size ArrangeOverride(Size finalSize)
-    {
-        return base.ArrangeOverride(finalSize);
-    }
-
-
     private void OnSizeChanged(object sender, SizeChangedEventArgs args)
     {
         this.Log().MethodInvoked();
-        ResizeControls();
+
     }
 
     private void OnLoaded(object sender, RoutedEventArgs e)
@@ -62,65 +59,72 @@ internal class LeftCanvas  : CanvasAbstract<ViewModelLeftCanvas>
                 }
             }
 
-            ResizeControls();
+            InvalidateArrange();
         }
 
     }
 
-    private void ResizeControls()
+    protected override Size MeasureOverride(Size availableSize)
     {
 
         if (VuMod.Shapes != null)
         {
-            FrameworkElement previousShape = this;
-            foreach (var shapeItem in VuMod.Shapes)
+
+            int I = 1;
+            foreach (var currentShape in Children)
             {
-                ResizeControls(shapeItem.Item1, previousShape, shapeItem.Item2);
-                previousShape = shapeItem.Item1;
+                double reductionFactor = ComputeReductionFactor(I++);
+
+                Size newSize = new Size((availableSize.Width * reductionFactor), (availableSize.Height * reductionFactor));
+
+                currentShape.Measure(newSize);
             }
         }
 
+        return availableSize;
     }
 
-    private void ResizeControls(Shape currentShape, FrameworkElement previousShape, double rotationAngle)
+    protected override Size ArrangeOverride(Size finalSize)
     {
-        this.Log().LogCritical($"Resizing : { DescribeShape(currentShape)}");
+        int I = 1;
+        foreach (var currentShape in Children)
+        {
+            double reductionFactor = ComputeReductionFactor(I);
+            double offset = SIZE_REDUCTION_PRCNT * I++;
 
-        double reductionFactor = 1.00 - (SIZE_REDUCTION_PRCNT * 2);
+            currentShape.Arrange(new Rect(finalSize.Width * offset, finalSize.Height * offset, finalSize.Width * reductionFactor, finalSize.Height * reductionFactor));
+        }
 
-        currentShape.Width = previousShape.ActualWidth * reductionFactor;
-        currentShape.Height = previousShape.ActualHeight * reductionFactor;
-
-        var previousTop = GetTop(previousShape);
-        var previousLeft = GetLeft(previousShape);
-
-
-        SetTop(currentShape, previousTop + (previousShape.ActualHeight * SIZE_REDUCTION_PRCNT) );
-        SetLeft(currentShape, previousLeft + (previousShape.ActualWidth * SIZE_REDUCTION_PRCNT));
-
-        currentShape.Opacity = 0.5;
-
+        return finalSize;
     }
+
+    private static double ComputeReductionFactor(int i)
+    {
+        return 1.00 - (SIZE_REDUCTION_PRCNT * 2 * i);
+    }
+
 
     protected override void OnPointerPressed(PointerRoutedEventArgs e, IEnumerable<UIElement> elements)
     {
 
         foreach (var element in elements)
         {
-            this.Log().LogCritical($"{ DescribeShape(element) }");
+            this.Log().LogCritical($"{DescribeShape(element)}");
         }
 
     }
 
-    private string DescribeShape(UIElement currentUIElement) {
+    private string DescribeShape(UIElement currentUIElement)
+    {
 
         string posit = string.Empty;
-        if (currentUIElement is FrameworkElement element) {
+        if (currentUIElement is FrameworkElement element)
+        {
             posit = $"H/W({element.Height.ToString("F0")}/{element.Width.ToString("F0")}) AH/AW({element.ActualHeight.ToString("F0")}/{element.ActualWidth.ToString("F0")})";
         }
 
-        return $"Resizing : {currentUIElement.GetType()} Z({GetZIndex(currentUIElement)}) {posit}";
-
+        //  return $"Resizing : {currentUIElement.GetType()} Z({GetZIndex(currentUIElement)}) {posit}";
+        return "FIX ME!!";
     }
 
 
