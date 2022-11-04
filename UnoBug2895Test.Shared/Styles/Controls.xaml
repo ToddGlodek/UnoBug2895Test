@@ -21,7 +21,7 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         
-                        <locals:LeftCanvas Background="Aqua" Grid.Row="0" Grid.Column="0"/>
+                        <locals:LeftPanel Background="Aqua" Grid.Row="0" Grid.Column="0"/>
                         <locals:RightCanvas Background="HotPink" Grid.Row="0" Grid.Column="1" />
 
                     </Grid>
