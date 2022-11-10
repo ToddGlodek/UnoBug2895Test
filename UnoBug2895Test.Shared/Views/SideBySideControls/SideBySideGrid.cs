@@ -110,8 +110,6 @@ internal class SideBySideGrid : UnoBug2895ControlAbnstract
         Loaded += OnLoaded;
 
         DefaultStyleKey = typeof(SideBySideGrid);
-
-
     }
 
     private void OnDataContextChanged(Microsoft.UI.Xaml.FrameworkElement sender, Microsoft.UI.Xaml.DataContextChangedEventArgs args)
@@ -119,7 +117,7 @@ internal class SideBySideGrid : UnoBug2895ControlAbnstract
         //**** WinUI  #1
         //**** WASM @ NEVER CALLED -  The ViewModel is instantiated already BEFORE OnApplyTemplate().  As a consequence, no
         //****        event handlers (e.g. On_PropertyChanged) that a developer would attempt to attach here would ever get
-        //            registered.   So instead, we will attach them in OnApplyTemplate instead when HAS_UNO.
+        //****        registered.   So instead, we will attach them in OnApplyTemplate instead when HAS_UNO.
         
 
 #if !HAS_UNO 
@@ -131,26 +129,24 @@ internal class SideBySideGrid : UnoBug2895ControlAbnstract
 
     }
 
+    protected override void OnApplyTemplate()
+    {
+        //**** WinUI #2
+        //**** WASM #1
+
+        this.Log().MethodInvoked();
+
+        base.OnApplyTemplate();
+    }
+
     private void OnLoaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
         //**** WinUI  #3
         //**** WASM #2
 
         this.Log().MethodInvoked();
-    }
 
-    protected override void OnApplyTemplate()
-    {
-        //**** WinUI #2
-        //**** WASM #1
-
-
-        this.Log().MethodInvoked();
-
-        base.OnApplyTemplate();
-
-        var booText = GetTemplateChild("txtBoo");
-
+        this.On_PropertyChanged(this.DataContext, new System.ComponentModel.PropertyChangedEventArgs(nameof(ShapesDisplayPageVieModel.ShapesList)));
     }
 
 
@@ -168,7 +164,5 @@ internal class SideBySideGrid : UnoBug2895ControlAbnstract
             }
         }
 
-
     }
-
 }
