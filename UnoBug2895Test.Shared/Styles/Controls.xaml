@@ -20,9 +20,9 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        
-                        <locals:LeftPanel Background="Aqua" Grid.Row="0" Grid.Column="0"/>
-                        <locals:RightCanvas Background="HotPink" Grid.Row="0" Grid.Column="1" />
+
+                        <locals:LeftPanel x:Name="LeftPanel" Background="Aqua" Grid.Row="0" Grid.Column="0"/>
+                        <locals:RightCanvas  x:Name="RightCanvas" Background="HotPink" Grid.Row="0" Grid.Column="1" />
 
                     </Grid>
                 </ControlTemplate>

@@ -39,7 +39,7 @@ namespace UnoBug2895Test.Views
 
             ShapesDisplayPageVieModel vm = this.vuMod;
 
-            //vm.ShapesList = (List<Tuple<Shape, double>>)e.Parameter;
+            vm.ShapesList = (List<Tuple<Shape, double>>)e.Parameter;
 
         }
 
@@ -47,6 +47,7 @@ namespace UnoBug2895Test.Views
         private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             this.Log().PropertyChanged(e);
+
         }
 
 

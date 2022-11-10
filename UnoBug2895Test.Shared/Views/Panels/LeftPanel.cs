@@ -21,7 +21,7 @@ internal class LeftPanel : PanelAbstract<ViewModelLeftCanvas>
 
     private void OnDataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
     {
-        /** Perform this check because a user MIGHT use XAML to set the ViewModel to something inappropropriat  **/
+        /** Perform this check because a user MIGHT use XAML to set the ViewModel to something inappropriate  **/
 
         if (args.NewValue is ViewModelLeftCanvas nuVuMod)
         {
@@ -67,18 +67,14 @@ internal class LeftPanel : PanelAbstract<ViewModelLeftCanvas>
     protected override Size MeasureOverride(Size availableSize)
     {
 
-        if (VuMod.Shapes != null)
+        int I = 1;
+        foreach (var currentShape in Children)
         {
+            double reductionFactor = ComputeReductionFactor(I++);
 
-            int I = 1;
-            foreach (var currentShape in Children)
-            {
-                double reductionFactor = ComputeReductionFactor(I++);
+            Size newSize = new Size((availableSize.Width * reductionFactor), (availableSize.Height * reductionFactor));
 
-                Size newSize = new Size((availableSize.Width * reductionFactor), (availableSize.Height * reductionFactor));
-
-                currentShape.Measure(newSize);
-            }
+            currentShape.Measure(newSize);
         }
 
         return availableSize;
